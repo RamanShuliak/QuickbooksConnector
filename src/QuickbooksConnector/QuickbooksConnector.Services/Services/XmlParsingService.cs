@@ -29,6 +29,11 @@ public class XmlParsingService : IXmlParsingService
             PhoneNumber = doc.SelectSingleNode("//Phone")?.InnerText ?? string.Empty
         };
 
+        if(model == null)
+        {
+            throw new InvalidOperationException("Unable to parse Company data from response.");
+        }
+
         return model;
     }
 
@@ -57,6 +62,11 @@ public class XmlParsingService : IXmlParsingService
             }
         }
 
+        if (model == null)
+        {
+            throw new InvalidOperationException("Unable to parse Invoice data from response.");
+        }
+
         return model;
     }
 
@@ -82,6 +92,11 @@ public class XmlParsingService : IXmlParsingService
 
                 model.ItemSalesRets.Add(item);
             }
+        }
+
+        if (model == null)
+        {
+            throw new InvalidOperationException("Unable to parse ItemSales data from response.");
         }
 
         return model;
@@ -112,6 +127,11 @@ public class XmlParsingService : IXmlParsingService
             }
         }
 
+        if (model == null)
+        {
+            throw new InvalidOperationException("Unable to parse Bill data from response.");
+        }
+
         return model;
     }
 
@@ -138,6 +158,11 @@ public class XmlParsingService : IXmlParsingService
 
                 model.CheckRets.Add(check);
             }
+        }
+
+        if (model == null)
+        {
+            throw new InvalidOperationException("Unable to parse Check data from response.");
         }
 
         return model;

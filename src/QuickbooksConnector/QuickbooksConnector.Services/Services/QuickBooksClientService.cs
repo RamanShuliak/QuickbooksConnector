@@ -16,8 +16,17 @@ public class QuickBooksClientService : IQuickBooksClientService
     private readonly QuickBooksConfig _quickBooksConfig;
 
     public QuickBooksClientService(
-        IOptions<QuickBooksConfig> quickBooksConfig)
+            IOptions<QuickBooksConfig> quickBooksConfig)
     {
+        if (quickBooksConfig == null
+            || quickBooksConfig.Value.AppId == default
+            || quickBooksConfig.Value.AppName == default)
+        {
+            throw new ArgumentException(
+                "QuickBooks configuration is not provided or is invalid.",
+                nameof(quickBooksConfig));
+        }
+
         _requestProcessor = new RequestProcessor2();
         _quickBooksConfig = quickBooksConfig.Value;
     }
@@ -40,7 +49,7 @@ public class QuickBooksClientService : IQuickBooksClientService
         }
         catch (COMException ex)
         {
-            throw new Exception("Error interacting with QuickBooks through QBXMLRP2", ex);
+            throw new COMException("Error during connection process with QuickBooks through QBXMLRP2", ex);
         }
         finally
         {
