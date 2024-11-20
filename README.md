@@ -24,13 +24,13 @@ Before running the application, make sure the following software is installed on
     Start by cloning the repository from the main branch.
 
 2. **Build the Project**
-    Navigate to the src\QuickbooksConnector directory & build the project in the bin\Release directory by running the following command in PowerShell:
+    Navigate to the **src\QuickbooksConnector** directory & build the project in the bin\Release directory by running the following command in PowerShell:
 
     ```powershell
     msbuild QuickbooksConnector.sln /p:Configuration=Release
 
 3. **Running the Project**
-    Navigate to the src\QuickbooksConnector\QuickbooksConnector.Api\bin\Release\net8.0 directory & run the QuickbooksConnector.Api.exe file.
+    Navigate to the **src\QuickbooksConnector\QuickbooksConnector.Api\bin\Release\net8.0** directory & run the **QuickbooksConnector.Api.exe** file.
 
 4. **Access Swagger Documentation**
     Once the application is running, you can access the Swagger documentation for the API by opening a browser and navigating to:
