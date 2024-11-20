@@ -2,17 +2,17 @@
 
 namespace QuickbooksConnector.Services.Services;
 
-public interface ICompanyService
+public interface ICheckService
 {
-    Task<CompanyMainInfoRsModel> GetCompanyMainInfoAsync();
+    Task<CheckMainInfoRsModel> GetCheckMainInfoAsync();
 }
 
-public class CompanyService : ICompanyService
+public class CheckService : ICheckService
 {
     private readonly IQuickBooksClientService _quickBooksClientService;
     private readonly IXmlParsingService _xmlParsingService;
 
-    public CompanyService(
+    public CheckService(
         IQuickBooksClientService quickBooksClientService, 
         IXmlParsingService xmlParsingService)
     {
@@ -20,19 +20,19 @@ public class CompanyService : ICompanyService
         _xmlParsingService = xmlParsingService;
     }
 
-    public async Task<CompanyMainInfoRsModel> GetCompanyMainInfoAsync()
+    public async Task<CheckMainInfoRsModel> GetCheckMainInfoAsync()
     {
-        var qbxmlRequest = @"<?xml version=""1.0""?>
+        var qbxmlRequest = @"<?xml version=""1.0"" ?>
             <?qbxml version=""8.0""?>
             <QBXML>
                <QBXMLMsgsRq onError=""stopOnError"">
-                  <CompanyQueryRq requestID=""1"" />
+                  <CheckQueryRq requestID=""1"" />
                </QBXMLMsgsRq>
             </QBXML>";
 
         var responseString = await _quickBooksClientService.SendRequestToQuickBooksAsync(qbxmlRequest);
 
-        var responseModel = _xmlParsingService.ParseCompanyMainInfo(responseString);
+        var responseModel = _xmlParsingService.ParseCheckMainInfo(responseString);
 
         return responseModel;
     }

@@ -2,17 +2,17 @@
 
 namespace QuickbooksConnector.Services.Services;
 
-public interface ICompanyService
+public interface IItemSalesService
 {
-    Task<CompanyMainInfoRsModel> GetCompanyMainInfoAsync();
+    Task<ItemSalesMainInfoRsModel> GetItemSalesMainInfoAsync();
 }
 
-public class CompanyService : ICompanyService
+public class ItemSalesService : IItemSalesService
 {
     private readonly IQuickBooksClientService _quickBooksClientService;
     private readonly IXmlParsingService _xmlParsingService;
 
-    public CompanyService(
+    public ItemSalesService(
         IQuickBooksClientService quickBooksClientService, 
         IXmlParsingService xmlParsingService)
     {
@@ -20,19 +20,20 @@ public class CompanyService : ICompanyService
         _xmlParsingService = xmlParsingService;
     }
 
-    public async Task<CompanyMainInfoRsModel> GetCompanyMainInfoAsync()
+    public async Task<ItemSalesMainInfoRsModel> GetItemSalesMainInfoAsync()
     {
-        var qbxmlRequest = @"<?xml version=""1.0""?>
+        var qbxmlRequest = @"<?xml version=""1.0"" ?>
             <?qbxml version=""8.0""?>
             <QBXML>
                <QBXMLMsgsRq onError=""stopOnError"">
-                  <CompanyQueryRq requestID=""1"" />
+                  <ItemSalesTaxQueryRq requestID=""4"">
+                  </ItemSalesTaxQueryRq>
                </QBXMLMsgsRq>
             </QBXML>";
 
         var responseString = await _quickBooksClientService.SendRequestToQuickBooksAsync(qbxmlRequest);
 
-        var responseModel = _xmlParsingService.ParseCompanyMainInfo(responseString);
+        var responseModel = _xmlParsingService.ParseItemSalesMainInfo(responseString);
 
         return responseModel;
     }

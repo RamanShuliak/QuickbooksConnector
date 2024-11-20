@@ -15,6 +15,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IQuickBooksClientService, QuickBooksClientService>();
         services.AddScoped<IXmlParsingService, XmlParsingService>();
         services.AddScoped<ICompanyService, CompanyService>();
+        services.AddScoped<IInvoiceService, InvoiceService>();
+        services.AddScoped<IItemSalesService, ItemSalesService>();
+        services.AddScoped<IBillService, BillService>();
+        services.AddScoped<ICheckService, CheckService>();
 
         return services;
     }

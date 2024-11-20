@@ -16,18 +16,10 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet("get-company-information")]
-    public async Task<IActionResult> GetCompanyMainInformationAsync()
+    public async Task<IActionResult> GetCompanyMainInfoAsync()
     {
-        var qbxmlRequest = @"<?xml version=""1.0""?>
-            <?qbxml version=""8.0""?>
-            <QBXML>
-               <QBXMLMsgsRq onError=""stopOnError"">
-                  <CompanyQueryRq requestID=""1"" />
-               </QBXMLMsgsRq>
-            </QBXML>";
+        var companyInfo = await _companyService.GetCompanyMainInfoAsync();
 
-        var companyInformation = await _companyService.GetCompanyMainInformationAsync();
-
-        return Ok(companyInformation);
+        return Ok(companyInfo);
     }
 }

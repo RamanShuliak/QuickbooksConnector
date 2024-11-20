@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuickbooksConnector.Business\QuickbooksConnector.Business.csproj" />
     <ProjectReference Include="..\QuickbooksConnector.Services\QuickbooksConnector.Services.csproj" />
   </ItemGroup>
 
