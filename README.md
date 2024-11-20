@@ -2,13 +2,6 @@
 
 This project provides a connector for integrating with QuickBooks, including a REST API to interact with QuickBooks data. Below are the instructions to set up, build, and run the project locally.
 
-### Key Sections Breakdown:
-
-1. **Prerequisites** - Lists the required software and how to verify installation.
-2. **Setup Instructions** - Step-by-step guide on how to clone, build, and run the project.
-3. **Accessing Swagger** - Instructions for accessing the Swagger UI after the project is running.
-4. **Troubleshooting** - Guidance for handling common issues.
-
 ## Prerequisites
 
 Before running the application, make sure the following software is installed on your local machine:
