@@ -27,4 +27,8 @@
     <ProjectReference Include="..\QuickbooksConnector.Services\QuickbooksConnector.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+	  <Content Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
