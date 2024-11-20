@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using QuickbooksConnector.Api.Filters;
 using QuickbooksConnector.Services.DependencyInjection;
 
@@ -10,6 +11,18 @@ builder.Services.AddControllers(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var httpsConfig = builder.Configuration.GetSection("Kestrel:Https");
+var certPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, httpsConfig["CertificatePath"]));
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.ListenAnyIP(Int32.Parse(httpsConfig["Port"]), listenOptions =>
+    {
+        listenOptions.UseHttps(
+            certPath,
+            httpsConfig["CertificatePassword"]);
+    });
+});
 
 var app = builder.Build();
 
